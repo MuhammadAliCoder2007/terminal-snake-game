@@ -29,17 +29,14 @@ while True:
     key = input("Move (wasd): ").strip().lower()
 
     if key == 'w':
-        dx = 0
-        dy = -1
+        dx,dy= 0,-1
     elif key == 'a':
-        dx = -1
-        dy = 0
+        dx , dy= -1,0
     elif key == 'd':
-        dx = 1
+        dx,dy = 1,0
         dy = 0
     elif key == 's':
-        dx = 0
-        dy  = 1
+        dx,dy = 0,1
     move()
 
 
