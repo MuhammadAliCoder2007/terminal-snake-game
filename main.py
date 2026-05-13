@@ -1,3 +1,4 @@
+import sys
 w = 30
 l = 10
 
@@ -25,9 +26,7 @@ def move():
 
 while True:
     printBoard()
-
     key = input("Move (wasd): ").strip().lower()
-
     if key == 'w':
         dx,dy= 0,-1
     elif key == 'a':
@@ -37,6 +36,9 @@ while True:
         dy = 0
     elif key == 's':
         dx,dy = 0,1
+    elif key == 'e' :
+        break
+        
     move()
 
 
