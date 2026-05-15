@@ -1,6 +1,5 @@
 w = 30
 l = 10
-
 def printBoard(): 
     for row in range(l):
         line = ""
@@ -18,12 +17,12 @@ def move():
     global snake, dx, dy
     head_x, head_y = snake[0]
     snake = [(head_x + dx, head_y + dy)] + snake[:-1]
+    
 def game():
     global snake, dx, dy
     snake = [(15,5)]
     dx, dy = 0,0
 
-        
     while True:
         printBoard()
         dx = 0
