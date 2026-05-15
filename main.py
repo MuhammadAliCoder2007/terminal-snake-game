@@ -1,9 +1,5 @@
-import sys
 w = 30
 l = 10
-
-snake = [(15, 5)]
-
 
 def printBoard(): 
     for row in range(l):
@@ -22,24 +18,37 @@ def move():
     global snake, dx, dy
     head_x, head_y = snake[0]
     snake = [(head_x + dx, head_y + dy)] + snake[:-1]
+def game():
+    global snake, dx, dy
+    snake = [(15,5)]
+    dx, dy = 0,0
 
-
-while True:
-    printBoard()
-    key = input("Move (wasd): ").strip().lower()
-    if key == 'w':
-        dx,dy= 0,-1
-    elif key == 'a':
-        dx , dy= -1,0
-    elif key == 'd':
-        dx,dy = 1,0
-        dy = 0
-    elif key == 's':
-        dx,dy = 0,1
-    elif key == 'e' :
-        break
         
-    move()
+    while True:
+        printBoard()
+        dx = 0
+        dy = 0
+        key = input("Move (wasd): ").strip().lower()
+        if key == 'w':
+            dx,dy= 0,-1
+        elif key == 'a':
+            dx , dy= -1,0
+        elif key == 'd':
+            dx,dy = 1,0
+        elif key == 's':
+            dx,dy = 0,1
+        else:
+            print("Invalid Input")
+            continue
+        move()
+        hx,hy = snake[0]
+        if hx==0 or hx==w-1 or hy==0 or hy==l-1:
+            printBoard()
+            print("Game Over")
+            break
+game()
+        
+
 
 
 
