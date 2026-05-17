@@ -62,7 +62,7 @@ def game():
             continue
         move()
         hx,hy = snake[0]
-        if snake[0]==food[0]:
+        if snake[0]==food:
             food = newFood()
 
         if hx==0 or hx==w-1 or hy==0 or hy==l-1:
