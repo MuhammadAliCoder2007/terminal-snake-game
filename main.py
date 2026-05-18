@@ -14,8 +14,10 @@ def printBoard():
     for row in range(l):
         line = ""
         for col in range(w):
-            if (col, row) in snake:
-                line += "O"
+            if (col, row) == snake[0]:
+                line += "@"
+            elif (col,row) in snake:
+                line+="O"
             elif (col,row) == food:
                 line+= "*"
             elif row==0 or row==l-1:
@@ -25,11 +27,14 @@ def printBoard():
             else:
                 line+= " "
         print(line)
-def move():
+def move(grow=False):
     global snake, dx, dy,food
     head_x, head_y = snake[0]
-    snake = [(head_x + dx, head_y + dy)] + snake[:-1]
-
+    new_head = (head_x + dx, head_y + dy)
+    if grow:
+        snake = [new_head] + snake     
+    else:
+        snake = [new_head] + snake[:-1] 
 def newFood():
     while True:
         fx = random.randint(1,w-2)
@@ -41,8 +46,8 @@ def newFood():
 def game():
     global snake, dx, dy,food
     food = newFood()
-    snake = [(15,5)]
-    dx, dy = 0,0
+    snake = [(15,5),(14,5),(13,5)]
+    dx, dy = 1,0
 
     while True:
         printBoard()
@@ -64,7 +69,7 @@ def game():
         hx,hy = snake[0]
         if snake[0]==food:
             food = newFood()
-
+            move(grow = True)
         if hx==0 or hx==w-1 or hy==0 or hy==l-1:
             print("Game Over")
             break
