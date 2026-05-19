@@ -50,6 +50,7 @@ def game():
     dx, dy = 1,0
 
     while True:
+        v = False
         printBoard()
         dx = 0
         dy = 0
@@ -65,14 +66,24 @@ def game():
         else:
             print("Invalid Input")
             continue
-        move()
-        hx,hy = snake[0]
-        if snake[0]==food:
-            food = newFood()
-            move(grow = True)
-        if hx==0 or hx==w-1 or hy==0 or hy==l-1:
+        
+      
+
+        next_head = (snake[0][0]+ dx, snake[0][1]+dy)
+        if next_head == food:
+            grow = True
+        else:
+            grow = False
+
+        move(grow=grow)
+        if grow:
+            food = newFood() 
+        hx,hy = snake[0]         
+        if hx==0 or hx==w-1 or hy==0 or hy==l-1 or (hx,hy) in snake[1:]:
             print("Game Over")
             break
+
+
 game()
         
 
